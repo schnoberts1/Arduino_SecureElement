@@ -1,6 +1,8 @@
 Arduino_SecureElement
 ====================
 
+# NOTE: This is DBC specific now
+
 [![Compile Examples](https://github.com/arduino-libraries/Arduino_SecureElement/workflows/Compile%20Examples/badge.svg)](https://github.com/arduino-libraries/Arduino_SecureElement/actions?workflow=Compile+Examples)
 [![Arduino Lint](https://github.com/arduino-libraries/Arduino_SecureElement/workflows/Arduino%20Lint/badge.svg)](https://github.com/arduino-libraries/Arduino_SecureElement/actions?workflow=Arduino+Lint)
 [![Spell Check](https://github.com/arduino-libraries/Arduino_SecureElement/workflows/Spell%20Check/badge.svg)](https://github.com/arduino-libraries/Arduino_SecureElement/actions?workflow=Spell+Check)
