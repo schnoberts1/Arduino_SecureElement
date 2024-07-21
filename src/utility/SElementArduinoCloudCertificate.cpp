@@ -39,7 +39,6 @@ int SElementArduinoCloudCertificate::write(SecureElement & se, ECP256Certificate
 int SElementArduinoCloudCertificate::read(SecureElement & se, ECP256Certificate & cert, const SElementArduinoCloudSlot certSlot, const SElementArduinoCloudSlot keySlot)
 {
 #if defined(SECURE_ELEMENT_IS_SE050) || defined(SECURE_ELEMENT_IS_SOFTSE)
-  (void)keySlot;
   byte derBuffer[SE_CERT_BUFFER_LENGTH];
   size_t derLen;
   if (!se.readSlot(static_cast<int>(certSlot), derBuffer, sizeof(derBuffer))) {
@@ -51,7 +50,7 @@ int SElementArduinoCloudCertificate::read(SecureElement & se, ECP256Certificate 
     return 0;
   }
 #else
-  String deviceId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+  String deviceId = "XXXXXXXXXXXXXXXXXXXXXXXX";
   byte publicKey[ECP256_CERT_PUBLIC_KEY_LENGTH];
 
   cert.begin();
@@ -73,10 +72,16 @@ int SElementArduinoCloudCertificate::read(SecureElement & se, ECP256Certificate 
   }
 
   cert.setSubjectCommonName(deviceId);
-  cert.setIssuerCountryName("US");
-  cert.setIssuerOrganizationName("Arduino LLC US");
-  cert.setIssuerOrganizationalUnitName("IT");
-  cert.setIssuerCommonName("Arduino");
+  cert.setSubjectCountryName( "UK" );
+  cert.setSubjectStateProvinceName( "North Yorkshire" );
+  cert.setSubjectOrganizationalUnitName( "Security" );
+  cert.setSubjectOrganizationName( "Dream Big Composites" );
+
+  cert.setIssuerCountryName("UK");
+  cert.setIssuerOrganizationName("Dream Big Composites");
+  cert.setIssuerOrganizationalUnitName("Security");
+  cert.setIssuerStateProvinceName( "North Yorkshire" );
+  cert.setIssuerCommonName("intermediate.dreambigcomposites.com");
 
   if (!cert.setPublicKey(publicKey, ECP256_CERT_PUBLIC_KEY_LENGTH)) {
     return 0;
